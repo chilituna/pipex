@@ -8,6 +8,6 @@ This project taught me about using child processes and pipes, file handling incl
 Score 100/100
 
 Helpful resources:
-- https://reactive.so/post/42-a-comprehensive-guide-to-pipex
-- https://www.youtube.com/watch?v=cex9XrZCU14&list=PLfqABt5AS4FmErobw8YyTwXDUE5nPH5lH&index=118&ab_channel=CodeVault and the further videos n this playlist (117-122)
+- To understand the project: https://reactive.so/post/42-a-comprehensive-guide-to-pipex
+- Could Vault videos to undestand the functions: https://www.youtube.com/watch?v=cex9XrZCU14&list=PLfqABt5AS4FmErobw8YyTwXDUE5nPH5lH&index=118&ab_channel=CodeVault and the further videos n this playlist (117-122)
   
