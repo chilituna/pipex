@@ -1,0 +1,74 @@
+VALID ARG + CREATE OUTPUT FILE + OVERWRITE ------ test ok
+-->
+./pipex pipex_tests/test_in "cat -e" "grep hello" pipex_tests/test_out
+./pipex pipex_tests/test_in "grep hello" "wc -w" pipex_tests/test_out
+-->
+< pipex_tests/test_in cat -e | grep hello > pipex_tests/test_out
+< pipex_tests/test_in grep hello | wc -w > pipex_tests/test_out
+
+
+INPUT FILE DOES NOT EXIST ---------- test ok 
+./pipex pipex_tests/test_x "grep hello" "wc -w" pipex_tests/test_out
+< pipex_tests/test_x grep hello | wc -w > pipex_tests/test_out
+
+
+INPUT FILE EXISTS BUT NO READ RIGHTS ----------  test ok 
+(before testing: chmod 777 pipex_tests/test_no_read)
+
+./pipex pipex_tests/test_no_read "grep hello" "wc -w" pipex_tests/test_out
+< pipex_tests/test_no_read grep hello | wc -w > pipex_tests/test_out
+
+
+OUTPUT FILE EXISTS BUT NO WRITE RIGHTS ------ test ok
+./pipex pipex_tests/test_in "grep hello" "wc -w" pipex_tests/test_no_write
+< pipex_tests/test_in grep hello | wc -w > pipex_tests/test_no_write
+
+
+NO WRITE RIGHTS AND NO READ RIGHTS ------ test ok
+./pipex pipex_tests/test_no_read "grep hello" "wc -w" pipex_tests/no_write
+< pipex_tests/test_no_read grep hello | wc -w > pipex_tests/no_write
+
+
+1st COMMAND DOES NOT EXIST -------- test ok
+./pipex pipex_tests/test_in "nothing here" "wc -w" pipex_tests/test_out
+< pipex_tests/test_in nothing here | wc -w > pipex_tests/test_out
+
+
+2nd COMMAND DOES NOT EXIST -------- test ok
+./pipex pipex_tests/test_in "ls" "nothing -w" pipex_tests/test_out
+< pipex_tests/test_in ls | nothing -w > pipex_tests/test_out
+
+
+BOTH COMMANDS WRONG -------------- test ok
+./pipex pipex_tests/test_in "nonono" "nothing -w" pipex_tests/test_out
+< pipex_tests/test_in nonono | nothing -w > pipex_tests/test_out
+
+
+NON-EXISTING FLAG 1 COMMAND ---------------- test ok
+./pipex pipex_tests/test_in "cat -nonono" "grep hello" pipex_tests/test_out
+< pipex_tests/test_in cat -nonono | grep hello > pipex_tests/test_out
+
+
+NON-EXISTING FLAG 2 COMMAND ---------------- test ok
+./pipex pipex_tests/test_in "cat -e" "grep -notexist hello" pipex_tests/test_out
+< pipex_tests/test_in cat -e | grep -notexist hello > pipex_tests/test_out
+
+
+INCORRECT NUMBER OF ARGS ------------- test ok
+./pipex pipex_tests/test_in "cat -e" "grep hello" 
+./pipex pipex_tests/test_in "cat -e" "grep hello" "wc -w" pipex_tests/test_out
+
+
+ABSOLUTE PATH ------------- test ok
+./pipex pipex_tests/test_in "grep hello" "/usr/bin/cat" "pipex_tests/test_out"
+< pipex_tests/test_in grep hello | /usr/bin/cat > pipex_tests/test_out
+
+
+EMPTY STRING -------------- test ok
+./pipex pipex_tests/test_in "" "grep hello" pipex_tests/test_out
+./pipex pipex_tests/test_in "cat -e" "" pipex_tests/test_out
+
+
+URANDOM ----------------- test ok
+./pipex /dev/urandom "cat" "head" pipex_tests/test_out
+< /dev/urandom cat | head > pipex_tests/test_out
