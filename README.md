@@ -16,11 +16,11 @@ It focuses on reliable process orchestration, file descriptor management, and cl
 
 ## Demo / Screenshots
 
-Add your visual assets here:
+Quick command flow demo:
 
-- CLI demo GIF placeholder: ![Pipex demo GIF](docs/demo.gif)
-- Terminal run screenshot placeholder: ![Pipex terminal screenshot](docs/screenshot-terminal.png)
-- Validation tests screenshot placeholder: ![Pipex tests screenshot](docs/screenshot-tests.png)
+![Pipex CLI demo](images/pipex_simple_test.gif)
+
+For a broader manual validation set, see the test scenarios listed in `pipex/pipex_tests/tests.txt`.
 
 ## Tech Stack
 
