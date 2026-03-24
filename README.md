@@ -1,6 +1,8 @@
-# Pipex
+![Pipex banner](images/pipex_banner.png)
 
 Recreates the Unix pipeline flow for two commands in C, including redirection, process control, and command execution.
+
+> 42 School project score: **100/100**
 
 ## Overview
 
